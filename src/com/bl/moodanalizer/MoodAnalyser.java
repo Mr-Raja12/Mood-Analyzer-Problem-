@@ -8,28 +8,51 @@ import java.util.Scanner;
  *
  */
 public class MoodAnalyser {
+	/**
+	 * Display Mood
+	 */
+	String message;
 
 	/**
-	 * created a method called MoodAnalyzer to pass all the cases
+	 * create default and parameterized constructors
 	 */
-	public String moodAnalysis(String message) {
-		/**
-		 * the method used to return SAD
-		 */
-		boolean status = message.toLowerCase().contains("sad");
-		if (status == true) {
-			return "Sad";
+	public MoodAnalyser(String message) {
+		if (message.equalsIgnoreCase("null")) {
+			this.message = null;
 		} else {
-			return "Happy";
+			this.message = message;
+		}
+	}
+
+	public MoodAnalyser() {
+
+	}
+
+	public void moodAnalysis() {
+		/**
+		 * In this method return mood
+		 */
+		try {
+
+			boolean status = message.toLowerCase().contains("sad");
+			if (status == true) {
+				System.out.println("Sad");
+			} else {
+				System.out.println("Happy");
+			}
+		} catch (Exception exception) {
+			System.out.println("Happy");
 		}
 	}
 
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
-		System.out.print("Enter a message : ");
+		System.out.print("Enter message : ");
 		String message = input.nextLine();
-		MoodAnalyser moodAnalyser = new MoodAnalyser();
-		String result = moodAnalyser.moodAnalysis(message);
-		System.out.println(result);
+		/**
+		 * Printing the message through object
+		 */
+		MoodAnalyser moodAnalyser = new MoodAnalyser(message);
+		moodAnalyser.moodAnalysis();
 	}
 }

@@ -9,12 +9,12 @@ import java.util.Scanner;
  */
 public class MoodAnalyser {
 	/**
-	 * Display Mood
+	 * Displayed the Mood condition
 	 */
 	String message;
 
 	/**
-	 * create default and parameterized constructors
+	 * Created a default and parameterized constructors
 	 */
 	public MoodAnalyser(String message) {
 		this.message = message;
@@ -24,19 +24,27 @@ public class MoodAnalyser {
 
 	}
 
-	public String moodAnalysis() {
+	public void moodAnalysis() throws MoodAnalyzerExceptiom {
 		/**
-		 * In this method return mood
+		 * The method used to return the Mood condition
 		 */
-		boolean status = message.toLowerCase().contains("sad");
-		if (status == true) {
-			return "Sad";
-		} else {
-			return "Happy";
+		try {
+			if (message.length() == 0) {
+				throw new MoodAnalyzerExceptiom("Enter a message");
+			} else {
+				boolean status = message.toLowerCase().contains("sad");
+				if (status == true) {
+					System.out.println("Sad");
+				} else {
+					System.out.println("Happy");
+				}
+			}
+		} catch (Exception exception) {
+			System.out.println("Happy.." + exception);
 		}
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws MoodAnalyzerExceptiom {
 		Scanner input = new Scanner(System.in);
 		System.out.print("Enter message : ");
 		String message = input.nextLine();
@@ -44,7 +52,6 @@ public class MoodAnalyser {
 		 * Printing the message through object
 		 */
 		MoodAnalyser moodAnalyser = new MoodAnalyser(message);
-		String result = moodAnalyser.moodAnalysis();
-		System.out.println(result);
+		moodAnalyser.moodAnalysis();
 	}
 }
